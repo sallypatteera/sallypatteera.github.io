@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wordle Cheat Sheet</title>
+    </head>
+    <body>
+        <h1>Wordle Cheat Sheet -- From my personal obsession</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Components </th>
+                    <th>Words</th>
+                </tr>
+            </thead>
+            <tbody id="wordle-table-body">
+                <!-- js will insert rows here -->
+            </tbody>
+        </table>
+
+        <script>
+            const wordleData = {
+                "3 vowels": [
+                    {combo: "a-e-i", words: ["abide", "alien", "alive", "aside", "aider", "aegis", "aider"]},
+                    {combo: "a-e-o", words: []},
+                    {combo: "a-e-u", words: []},
+                    {combo: "a-i-o", words: []},
+                    {combo: "a-i-u", words: []},
+                    {combo: "a-o-u", words: []},
+                    {combo: "e-i-o", words: []},
+                    {combo: "e-i-u", words: []},
+                    {combo: "e-o-u", words: []},
+                    {combo: "i-o-u", words: []}
+                ],
+                "2 vowels": [
+                    {combo: "a-e", words: ["abate", "agree", "alien", "angle", "apple", "arise", "aside", "aider"]},
+                    {combo: "a-i", words: ["abide", "alive", "aider"]},
+                    {combo: "a-o", words: []},
+                    {combo: "a-u", words: []},
+                    {combo: "e-i", words: []},
+                    {combo: "e-o", words: []},
+                    {combo: "e-u", words: []},
+                    {combo: "i-o", words: []},
+                    {combo: "i-u", words: []},
+                    {combo: "o-u", words: []}
+                ]
+            };
+            const tBody = document.getElementById("wordle-table-body");
+            for (const group in wordleData) {
+                const groupRow = document.createElement("tr");
+                groupRow.classList.add("group-label");
+                groupRow.innerHTML = `<td colspan="2">${group}</td>`;
+                tBody.appendChild(groupRow);
+
+                wordleData[group].forEach(item => {
+                    const row = document.createElement("tr");
+                    const words = item.words.join("<br>");
+                    row.innerHTML = `<td>${item.combo}</td><td>${words}</td>`;
+                    tBody.appendChild(row);
+                });
+            }
+        </script>
+    </body>
+</html>
